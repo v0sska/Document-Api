@@ -24,4 +24,8 @@ public class Authors {
     private UUID id;
 
     private String name;
+
+    public Authors(String name) {
+        this.name = name;
+    }
 }
