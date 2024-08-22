@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.example.documentapi.dtos.AuthorsDto;
 import org.example.documentapi.entities.Authors;
 import org.example.documentapi.interfaces.IAuthorService;
-import org.example.documentapi.mappers.AuthorMapper;
 import org.example.documentapi.repositories.AuthorRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +15,11 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AuthorService implements IAuthorService {
 
-    private AuthorMapper authorMapper;
     private AuthorRepository authorRepository;
 
     @Override
     public Authors create(AuthorsDto authorsDto) {
-        System.out.println("dto: " + authorsDto.getName());
-        Authors author = authorMapper.toEntity(authorsDto);
-        System.out.println("author: " + author.getName());
+        Authors author = toEntity(authorsDto);
         return authorRepository.save(author);
     }
 
@@ -51,4 +47,11 @@ public class AuthorService implements IAuthorService {
 
         return authorRepository.save(existingAuthor);
     }
+
+    private Authors toEntity(AuthorsDto authorsDto) {
+        Authors authors = new Authors();
+        authors.setName(authorsDto.getName());
+        return authors;
+    }
+
 }

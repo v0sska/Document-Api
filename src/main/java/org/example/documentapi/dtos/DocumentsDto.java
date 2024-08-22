@@ -1,17 +1,22 @@
 package org.example.documentapi.dtos;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.UUID;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthorsDto {
+public class DocumentsDto {
 
-    private String name;
+    private String title;
+
+    private String content;
+
+    private UUID authorId;
 }
